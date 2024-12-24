@@ -1,0 +1,275 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a472a, #2d5a4d);
+    perspective: 1000px;
+}
+
+.container {
+    padding: 20px;
+    position: relative;
+}
+
+/* Present Styles */
+.present {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    margin: 50px auto;
+}
+
+.present:hover {
+    transform: scale(1.05);
+}
+
+.present-body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff1a1a, #ff4d4d);
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.present-top {
+    width: 110%;
+    height: 30px;
+    background: linear-gradient(45deg, #ff0000, #ff3333);
+    position: absolute;
+    top: -15px;
+    left: -5%;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ribbon-vertical {
+    width: 20px;
+    height: 120%;
+    background: #gold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -10%;
+    background: linear-gradient(45deg, #ffd700, #ffed4a);
+}
+
+.ribbon-horizontal {
+    width: 120%;
+    height: 20px;
+    background: #gold;
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    transform: translateY(-50%);
+    background: linear-gradient(45deg, #ffd700, #ffed4a);
+}
+
+.tag {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1.1em;
+    white-space: nowrap;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    animation: bounce 2s infinite;
+}
+
+/* Card Styles */
+.card {
+    width: 300px;
+    height: 400px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-front {
+    background: linear-gradient(45deg, #c41e3a, #8b0000);
+    color: white;
+    text-align: center;
+}
+
+.card-back {
+    background: #fff;
+    transform: rotateY(180deg);
+}
+
+.card.hidden {
+    opacity: 0;
+    transform: scale(0.1);
+    pointer-events: none;
+}
+
+.christmas-design {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+h1 {
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.tree {
+    font-size: 5em;
+    margin: 20px 0;
+    animation: bounce 2s infinite;
+}
+
+.click-message {
+    position: absolute;
+    bottom: 20px;
+    font-size: 0.9em;
+    opacity: 0.8;
+    animation: pulse 1.5s infinite;
+}
+
+.letter {
+    padding: 20px;
+    color: #333;
+}
+
+.letter h2 {
+    font-family: 'Mountains of Christmas', cursive;
+    color: #c41e3a;
+    margin-bottom: 20px;
+}
+
+.letter p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 0.9em;
+}
+
+.signature {
+    text-align: right;
+    font-style: italic;
+}
+
+.snowflakes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.snowflakes::before {
+    content: '❄️';
+    font-size: 20px;
+    position: absolute;
+    animation: snow 10s linear infinite;
+    opacity: 0.7;
+}
+
+.snowflakes::after {
+    content: '❄️';
+    font-size: 15px;
+    position: absolute;
+    animation: snow 8s linear infinite;
+    animation-delay: -5s;
+    opacity: 0.5;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes snow {
+    0% {
+        top: -10%;
+        left: random(100);
+        transform: rotate(0deg);
+    }
+    100% {
+        top: 100%;
+        left: random(100);
+        transform: rotate(360deg);
+    }
+}
+
+/* Animation for present reveal */
+@keyframes presentReveal {
+    0% {
+        transform: scale(1) rotate(0);
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+    }
+    100% {
+        transform: scale(0) rotate(360deg);
+    }
+}
+
+.present.reveal {
+    animation: presentReveal 1s forwards;
+}
+
+/* Additional animations */
+@keyframes cardAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.1) rotate(-20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.card.show {
+    animation: cardAppear 1s forwards;
+}
